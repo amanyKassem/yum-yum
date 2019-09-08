@@ -1,0 +1,1 @@
+export default {	yellow : '#fec105',	red : '#bf4949',	gray : '#929292',	lightGray : '#f5f5f5',	boldGray:'#898989',	grayBtn:'#ebebeb',	placeholderColor: '#c8c8c8',	black: '#222222'}
