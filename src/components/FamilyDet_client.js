@@ -1,6 +1,16 @@
 import React, { Component } from "react";
-import {View, Text, Image, Animated, Dimensions, ScrollView, TouchableOpacity, FlatList} from "react-native";
-import {Container, Content,  Header, Button, Item, Input} from 'native-base'
+import {
+    View,
+    Text,
+    Image,
+    Animated,
+    Dimensions,
+    ScrollView,
+    TouchableOpacity,
+    FlatList,
+    KeyboardAvoidingView
+} from "react-native";
+import {Container, Content, Header, Button, Item, Input, Form, Label, Textarea} from 'native-base'
 import styles from '../../assets/styles'
 import i18n from '../../locale/i18n'
 import COLORS from '../../src/consts/colors'
@@ -16,7 +26,7 @@ const products=[
 ]
 
 
-class RestDet_client extends Component {
+class FamilyDet_client extends Component {
     constructor(props){
         super(props);
 
@@ -26,6 +36,8 @@ class RestDet_client extends Component {
             starCount:3,
             activeType:0,
             products,
+            msg: '',
+            msgStatus: 0,
         }
     }
 
@@ -37,7 +49,7 @@ class RestDet_client extends Component {
 
     renderItems = (item) => {
         return(
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('productDet_client')} style={[styles.notiBlock , {padding:7}]}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('familyProductDet_client')} style={[styles.notiBlock , {padding:7}]}>
                 <Image source={item.image} resizeMode={'cover'} style={styles.restImg}/>
                 <View style={[styles.directionColumn , {flex:1}]}>
                     <View style={[styles.directionRowSpace ]}>
@@ -86,6 +98,57 @@ class RestDet_client extends Component {
         }
     }
 
+
+    activeInput(type){
+        if (type === 'msg'){
+            this.setState({ msgStatus: 1 })
+        }else
+            this.setState({ emailStatus: 1 })
+    }
+
+    unActiveInput(type){
+        if (type === 'msg'){
+            this.setState({ msgStatus: 0 })
+        }else
+            this.setState({ emailStatus: 0 })
+    }
+
+    renderOrders(){
+        if(this.state.activeType === 5){
+            return(
+                <KeyboardAvoidingView behavior={'padding'} style={styles.keyboardAvoid}>
+                    <Form style={{ width: '100%' }}>
+
+                        <Item style={[styles.loginItem]} bordered>
+                            <Label style={[styles.label ]}>تفاصيل الطلب</Label>
+                            <Textarea onBlur={() => this.unActiveInput('msg')} onFocus={() => this.activeInput('msg')} placeholderTextColor={COLORS.placeholderColor}
+                                      onChangeText={(msg) => this.setState({msg})} autoCapitalize='none'
+                                      style={[styles.input , {borderTopRightRadius:25 ,
+                                          borderColor: this.state.msgStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
+                                          backgroundColor: this.state.msgStatus === 1 ? '#fff' : COLORS.lightGray ,
+                                          height:120 , paddingVertical:10}]} placeholder="التفاصيل" />
+                        </Item>
+
+                        <TouchableOpacity  style={[styles.yellowBtn , styles.mb10]}>
+                            <Text style={styles.whiteText}>{ i18n.t('confirm') }</Text>
+                        </TouchableOpacity>
+                    </Form>
+                </KeyboardAvoidingView>
+            )
+        } else {
+            return(
+                <FlatList
+                    data={this.state.products}
+                    renderItem={({item}) => this.renderItems(item)}
+                    numColumns={1}
+                    keyExtractor={this._keyExtractor}
+                />
+            )
+        }
+    }
+
+
+
     render() {
         const backgroundColor = this.state.backgroundColor.interpolate({
             inputRange: [0, 1],
@@ -106,7 +169,7 @@ class RestDet_client extends Component {
                             </Button>
                         </View>
 
-                        <Text style={[styles.headerText , {right:0} ]}>تفاصيل المطعم</Text>
+                        <Text style={[styles.headerText , {right:0} ]}>تفاصيل الاسرة</Text>
 
                         <View style={styles.directionRow}>
                             <View>
@@ -130,7 +193,7 @@ class RestDet_client extends Component {
                             <View style={[styles.resProfileImg]}>
                                 <Image source={require('../../assets/images/profile_pic.png')} resizeMode={'cover'} style={styles.swiperimage}/>
                             </View>
-                            <Text style={[styles.sideName, {fontSize:15}]}>اماني قاسم</Text>
+                            <Text style={[styles.sideName, {fontSize:15}]}>اسم الاسرة</Text>
                             <View style={[styles.locationView, styles.mb10 , {marginTop:7}]}>
                                 <Image source={require('../../assets/images/maps.png')} style={[styles.locationImg]} resizeMode={'contain'} />
                                 <Text style={[styles.whiteText , styles.normalText]}>الرياض - المملكة العربية السعودية</Text>
@@ -168,8 +231,8 @@ class RestDet_client extends Component {
                                 <Text style={[styles.scrollText,{color:this.state.activeType === 4 ? COLORS.yellow : COLORS.boldGray}]}>معجنات</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 4 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={ () => this.setState({activeType:5})} style={styles.scrollView}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 5 ? COLORS.yellow : COLORS.boldGray}]}>مشروبات</Text>
+                            <TouchableOpacity onPress={ () => this.setState({activeType:5})} style={[styles.scrollView , {width:90}]}>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 5 ? COLORS.yellow : COLORS.boldGray}]}>طلب خاص</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 5 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                         </ScrollView>
@@ -177,12 +240,7 @@ class RestDet_client extends Component {
 
                     <View style={[styles.homeSection , {marginTop:20}]}>
 
-                        <FlatList
-                            data={this.state.products}
-                            renderItem={({item}) => this.renderItems(item)}
-                            numColumns={1}
-                            keyExtractor={this._keyExtractor}
-                        />
+                        { this.renderOrders() }
 
                     </View>
 
@@ -193,4 +251,4 @@ class RestDet_client extends Component {
     }
 }
 
-export default RestDet_client;
+export default FamilyDet_client;

@@ -38,7 +38,7 @@ class DrawerCustomization_client extends Component {
                                          if (route.route.key === 'logout') {
                                              this.logout()
                                          }else {
-                                             route.route.key === 'shareApp' ? this.onShare(): this.props.navigation.navigate(route.route.key)
+                                             this.props.navigation.navigate(route.route.key)
                                          }
                                      }
                                  }

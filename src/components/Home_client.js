@@ -73,7 +73,7 @@ class Home_client extends Component {
                                 <Text style={[styles.catText]}>مطاعم</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.catView}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('families_client')} style={styles.catView}>
                             <Image source={require('../../assets/images/cake.png')} style={styles.swiperimage} resizeMode={'cover'}/>
                             <View style={styles.overlay}>
                                 <Image source={require('../../assets/images/home.png')} style={[styles.catImg , styles.transform]} resizeMode={'contain'} />

@@ -21,6 +21,14 @@ import Wallet_client from "../components/Wallet_client";
 import AboutApp_client from "../components/AboutApp_client";
 import Policy_client from "../components/Policy_client";
 import ContactUa_client from "../components/ContactUa_client";
+import Complaints_client from "../components/Complaints_client";
+import ShareApp_client from "../components/ShareApp_client";
+import Language_client from "../components/Language_client";
+import MyOrders_client from "../components/MyOrders_client";
+import SpecialOrders_client from "../components/SpecialOrders_client";
+import Families_client from "../components/Families_client";
+import FamilyDet_client from "../components/FamilyDet_client";
+import FamilyProductDet_client from "../components/FamilyProductDet_client";
 
 const drawerCust = (props) => (<DrawerCustomization_client {...props} />)
 const DrawerNavigator = createDrawerNavigator({
@@ -31,11 +39,19 @@ const DrawerNavigator = createDrawerNavigator({
     productDet_client:ProductDet_client,
     orderNow_client:OrderNow_client,
     profile_client:Profile_client,
+    myOrders_client:MyOrders_client,
+    specialOrders_client:SpecialOrders_client,
     cart_client:Cart_client,
     wallet_client:Wallet_client,
     aboutApp_client:AboutApp_client,
     policy_client:Policy_client,
     contactUa_client:ContactUa_client,
+    complaints_client:Complaints_client,
+    shareApp_client:ShareApp_client,
+    language_client:Language_client,
+    families_client:Families_client,
+    familyDet_client:FamilyDet_client,
+    familyProductDet_client:FamilyProductDet_client,
 
 },{
     initialRouteName:'home_client',
@@ -48,14 +64,62 @@ const DrawerNavigator = createDrawerNavigator({
 })
 const AppNavigator = createStackNavigator({
 
-    contactUa_client: {
-        screen: ContactUa_client,
+    familyDet_client: {
+        screen: FamilyDet_client,
         navigationOptions: {
             header: null
         }
     },
     drawerNavigator_client: {
         screen: DrawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    familyProductDet_client: {
+        screen: FamilyProductDet_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    families_client: {
+        screen: Families_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    specialOrders_client: {
+        screen: SpecialOrders_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    myOrders_client: {
+        screen: MyOrders_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    language_client: {
+        screen: Language_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    shareApp_client: {
+        screen: ShareApp_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    complaints_client: {
+        screen: Complaints_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    contactUa_client: {
+        screen: ContactUa_client,
         navigationOptions: {
             header: null
         }
