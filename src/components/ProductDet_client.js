@@ -18,7 +18,8 @@ class ProductDet_client extends Component {
             availabel: 0,
             starCount:3,
             activeType:0,
-            value:0
+            value:1,
+            selectedId: 0,
         }
     }
 
@@ -26,7 +27,10 @@ class ProductDet_client extends Component {
         drawerLabel: () => null,
     });
 
+    checkReason(reasonId){
+        this.setState({ selectedId: reasonId });
 
+    }
     setAnimate(availabel){
         if (availabel === 0){
             Animated.timing(
@@ -67,11 +71,8 @@ class ProductDet_client extends Component {
     }
 
     decrement(){
-        if (this.state.value === 0){
-            this.setState({value: 0})
-        } else {
+        if (this.state.value > 1)
             this.setState({value: this.state.value - 1})
-        }
     }
 
 
@@ -140,28 +141,28 @@ class ProductDet_client extends Component {
                             <View style={[styles.locationView , styles.directionColumn]}>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkReason(1)} checked={this.state.selectedId == 1 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={true}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkReason(2)} checked={this.state.selectedId == 2 ? true : false} color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkReason(3)} checked={this.state.selectedId == 3 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkReason(4)} checked={this.state.selectedId == 4 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>

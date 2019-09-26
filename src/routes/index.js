@@ -29,6 +29,9 @@ import SpecialOrders_client from "../components/SpecialOrders_client";
 import Families_client from "../components/Families_client";
 import FamilyDet_client from "../components/FamilyDet_client";
 import FamilyProductDet_client from "../components/FamilyProductDet_client";
+import OrderDet_client from "../components/OrderDet_client";
+import OrderSent_client from "../components/OrderSent_client";
+import FollowOrder_client from "../components/FollowOrder_client";
 
 const drawerCust = (props) => (<DrawerCustomization_client {...props} />)
 const DrawerNavigator = createDrawerNavigator({
@@ -52,6 +55,9 @@ const DrawerNavigator = createDrawerNavigator({
     families_client:Families_client,
     familyDet_client:FamilyDet_client,
     familyProductDet_client:FamilyProductDet_client,
+    orderDet_client:OrderDet_client,
+    orderSent_client:OrderSent_client,
+    followOrder_client:FollowOrder_client,
 
 },{
     initialRouteName:'home_client',
@@ -64,14 +70,38 @@ const DrawerNavigator = createDrawerNavigator({
 })
 const AppNavigator = createStackNavigator({
 
-    familyDet_client: {
-        screen: FamilyDet_client,
+    followOrder_client: {
+        screen: FollowOrder_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    orderSent_client: {
+        screen: OrderSent_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    orderDet_client: {
+        screen: OrderDet_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    orderNow_client: {
+        screen: OrderNow_client,
         navigationOptions: {
             header: null
         }
     },
     drawerNavigator_client: {
         screen: DrawerNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    familyDet_client: {
+        screen: FamilyDet_client,
         navigationOptions: {
             header: null
         }
@@ -150,12 +180,6 @@ const AppNavigator = createStackNavigator({
     },
     profile_client: {
         screen: Profile_client,
-        navigationOptions: {
-            header: null
-        }
-    },
-    orderNow_client: {
-        screen: OrderNow_client,
         navigationOptions: {
             header: null
         }

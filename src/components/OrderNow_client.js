@@ -4,7 +4,6 @@ import {Container, Content,  Header, Button, Item, Input} from 'native-base'
 import styles from '../../assets/styles'
 import i18n from '../../locale/i18n'
 import COLORS from '../../src/consts/colors'
-import StarRating from "./Restaurants_client";
 
 
 const height = Dimensions.get('window').height;
