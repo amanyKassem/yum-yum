@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import {View, Text, Image, Animated, Dimensions, ScrollView, TouchableOpacity, FlatList} from "react-native";
+import {
+    View,
+    Text,
+    Image,
+    Animated,
+    Dimensions,
+    ScrollView,
+    TouchableOpacity,
+    FlatList,
+    I18nManager
+} from "react-native";
 import {Container, Content, Header, Button, Item, Input, CheckBox, Icon} from 'native-base'
 import styles from '../../assets/styles'
 import i18n from '../../locale/i18n'
@@ -27,8 +37,8 @@ class ProductDet_client extends Component {
         drawerLabel: () => null,
     });
 
-    checkReason(reasonId){
-        this.setState({ selectedId: reasonId });
+    checkAdd(addId){
+        this.setState({ selectedId: addId });
 
     }
     setAnimate(availabel){
@@ -97,14 +107,16 @@ class ProductDet_client extends Component {
                             </Button>
                         </View>
 
-                        <Text style={[styles.headerText , {right:0} ]}>تفاصيل المنتج</Text>
+                        <Text style={[styles.headerText , {right:0} ]}>{ i18n.t('productDet') }</Text>
 
                         <View style={styles.directionRow}>
                             <View>
                                 <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                                     <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                                 </Button>
-                                <Text style={styles.cartNum}>1</Text>
+                                <View style={styles.cartNum}>
+                                    <Text style={styles.cartNumText}>12</Text>
+                                </View>
                             </View>
                             <Button onPress={() => this.props.navigation.goBack()} transparent  style={styles.headerBtn}>
                                 <Image source={require('../../assets/images/arrow_left.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
@@ -127,7 +139,7 @@ class ProductDet_client extends Component {
                                 <Text style={[styles.productName , {color:COLORS.yellow} ]}>25 ر.س</Text>
                             </View>
                             <View style={[styles.locationView]}>
-                                <Text style={[styles.grayText , {lineHeight:22} ]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة </Text>
+                                <Text style={[styles.grayText , {writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',lineHeight:22} ]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس  </Text>
                             </View>
                         </View>
 
@@ -135,34 +147,34 @@ class ProductDet_client extends Component {
 
                         <View style={[styles.directionColumn , {flex:1}]}>
                             <View style={[styles.directionRow , styles.locationView , {marginTop:0} ]}>
-                                <Text style={[styles.productName ]}>اضافات</Text>
-                                <Text style={[styles.grayText ,{marginLeft:5}]}>(اختياري)</Text>
+                                <Text style={[styles.productName ]}>{i18n.t('extras')}</Text>
+                                <Text style={[styles.grayText ,{marginLeft:5}]}>({i18n.t('optional')})</Text>
                             </View>
                             <View style={[styles.locationView , styles.directionColumn]}>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox onPress={ () => this.checkReason(1)} checked={this.state.selectedId == 1 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(1)} checked={this.state.selectedId == 1 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox onPress={ () => this.checkReason(2)} checked={this.state.selectedId == 2 ? true : false} color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(2)} checked={this.state.selectedId == 2 ? true : false} color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox onPress={ () => this.checkReason(3)} checked={this.state.selectedId == 3 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(3)} checked={this.state.selectedId == 3 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox onPress={ () => this.checkReason(4)} checked={this.state.selectedId == 4 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(4)} checked={this.state.selectedId == 4 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
@@ -174,7 +186,7 @@ class ProductDet_client extends Component {
 
                         <View style={[styles.directionColumn , {flex:1}]}>
                             <View style={[styles.locationView , {marginTop:0} ]}>
-                                <Text style={[styles.productName ]}>حدد الكمية المطلوبة</Text>
+                                <Text style={[styles.productName ]}>{i18n.t('requiredQuantity')}</Text>
                             </View>
                             <View style={[styles.locationView , styles.directionColumn ]}>
                                 <View style={styles.counterParent}>
@@ -187,11 +199,11 @@ class ProductDet_client extends Component {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={[ styles.total]}>
-                                    <Text style={[styles.check]}>الاجمالي</Text>
+                                    <Text style={[styles.check]}>{i18n.t('total')}</Text>
                                     <Text style={[styles.check, {color:COLORS.yellow , marginLeft:10}]}>20.00 ر.س</Text>
                                 </View>
                                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('orderNow_client')} style={[styles.orderNowBtn]}>
-                                    <Text style={styles.whiteText}>اطلب الآن</Text>
+                                    <Text style={styles.whiteText}>{i18n.t('orderNow')}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

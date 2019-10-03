@@ -20,7 +20,7 @@ import Cart_client from "../components/Cart_client";
 import Wallet_client from "../components/Wallet_client";
 import AboutApp_client from "../components/AboutApp_client";
 import Policy_client from "../components/Policy_client";
-import ContactUa_client from "../components/ContactUa_client";
+import ContactUs_client from "../components/ContactUs_client";
 import Complaints_client from "../components/Complaints_client";
 import ShareApp_client from "../components/ShareApp_client";
 import Language_client from "../components/Language_client";
@@ -32,9 +32,37 @@ import FamilyProductDet_client from "../components/FamilyProductDet_client";
 import OrderDet_client from "../components/OrderDet_client";
 import OrderSent_client from "../components/OrderSent_client";
 import FollowOrder_client from "../components/FollowOrder_client";
+import FollowDelegate_client from "../components/FollowDelegate_client";
+import Location_client from "../components/Location_client";
+import AddRate_client from "../components/AddRate_client";
+import Rate_client from "../components/Rate_client";
+import PriceOrderDet_client from "../components/PriceOrderDet_client";
+import ShowPrice_client from "../components/ShowPrice_client";
+import Logout_client from "../components/Logout_client";
+
+
+import DrawerCustomization_delegate from "./DrawerCustomization_delegate";
+import Login_delegate from "../components/Login_delegate";
+import Home_delegate from "../components/Home_delegate";
+import ForgetPassword_delegate from "../components/ForgetPassword_delegate";
+import VerifyCode_delegate from "../components/VerifyCode_delegate";
+import Register_delegate from "../components/Register_delegate";
+import DataSent_delegate from "../components/DataSent_delegate";
+import OrderDet_delegate from "../components/OrderDet_delegate";
+import MyOrders_delegate from "../components/MyOrders_delegate";
+import FollowOrder_delegate from "../components/FollowOrder_delegate";
+import AboutApp_delegate from "../components/AboutApp_delegate";
+import Location_delegate from "../components/Location_delegate";
+import Policy_delegate from "../components/Policy_delegate";
+import ContactUs_delegate from "../components/ContactUs_delegate";
+import Complaints_delegate from "../components/Complaints_delegate";
+import ShareApp_delegate from "../components/ShareApp_delegate";
+import Notification_delegate from "../components/Notification_delegate";
+import Profile_delegate from "../components/Profile_delegate";
+import Logout_delegate from "../components/Logout_delegate";
 
 const drawerCust = (props) => (<DrawerCustomization_client {...props} />)
-const DrawerNavigator = createDrawerNavigator({
+const drawerNavigator_client = createDrawerNavigator({
     home_client:Home_client,
     notification_client:Notification_client,
     restaurants_client:Restaurants_client,
@@ -48,7 +76,7 @@ const DrawerNavigator = createDrawerNavigator({
     wallet_client:Wallet_client,
     aboutApp_client:AboutApp_client,
     policy_client:Policy_client,
-    contactUa_client:ContactUa_client,
+    contactUs_client:ContactUs_client,
     complaints_client:Complaints_client,
     shareApp_client:ShareApp_client,
     language_client:Language_client,
@@ -58,6 +86,13 @@ const DrawerNavigator = createDrawerNavigator({
     orderDet_client:OrderDet_client,
     orderSent_client:OrderSent_client,
     followOrder_client:FollowOrder_client,
+    followDelegate_client:FollowDelegate_client,
+    location_client:Location_client,
+    addRate_client:AddRate_client,
+    rate_client:Rate_client,
+    priceOrderDet_client:PriceOrderDet_client,
+    showPrice_client:ShowPrice_client,
+    logout_client:Logout_client,
 
 },{
     initialRouteName:'home_client',
@@ -68,16 +103,206 @@ const DrawerNavigator = createDrawerNavigator({
     drawerToggleRoute:'DrawerToggle',
     contentComponent:drawerCust
 })
+
+
+
+//Delegate user
+
+const drawerCustDelegate = (props) => (<DrawerCustomization_delegate {...props} />)
+const drawerNavigator_delegate = createDrawerNavigator({
+    home_delegate:Home_delegate,
+    orderDet_delegate:OrderDet_delegate,
+    profile_delegate:Profile_delegate,
+    myOrders_delegate:MyOrders_delegate,
+    followOrder_delegate:FollowOrder_delegate,
+    location_delegate:Location_delegate,
+    aboutApp_delegate:AboutApp_delegate,
+    policy_delegate:Policy_delegate,
+    contactUs_delegate:ContactUs_delegate,
+    complaints_delegate:Complaints_delegate,
+    shareApp_delegate:ShareApp_delegate,
+    notification_delegate:Notification_delegate,
+    logout_delegate:Logout_delegate,
+
+},{
+    initialRouteName:'home_delegate',
+    drawerPosition:I18nManager.isRTL ?'right' : 'left',
+    drawerOpenRoute:'DrawerOpen',
+    drawerCloseRoute:'DrawerClose',
+    gesturesEnabled:false,
+    drawerToggleRoute:'DrawerToggle',
+    contentComponent:drawerCustDelegate
+})
 const AppNavigator = createStackNavigator({
 
-    followOrder_client: {
-        screen: FollowOrder_client,
+
+
+    user: {
+        screen: User,
         navigationOptions: {
             header: null
         }
     },
-    orderSent_client: {
-        screen: OrderSent_client,
+
+    //delegate user
+
+    profile_delegate: {
+        screen: Profile_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    drawerNavigator_delegate: {
+        screen: drawerNavigator_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    logout_delegate: {
+        screen: Logout_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    notification_delegate: {
+        screen: Notification_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    shareApp_delegate: {
+        screen: ShareApp_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    complaints_delegate: {
+        screen: Complaints_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    contactUs_delegate: {
+        screen: ContactUs_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    policy_delegate: {
+        screen: Policy_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    aboutApp_delegate: {
+        screen: AboutApp_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    location_delegate: {
+        screen: Location_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    followOrder_delegate: {
+        screen: FollowOrder_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    myOrders_delegate: {
+        screen: MyOrders_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    orderDet_delegate: {
+        screen: OrderDet_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    register_delegate: {
+        screen: Register_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    dataSent_delegate: {
+        screen: DataSent_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    login_delegate: {
+        screen: Login_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    verifyCode_delegate: {
+        screen: VerifyCode_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+    forgetPassword_delegate: {
+        screen: ForgetPassword_delegate,
+        navigationOptions: {
+            header: null
+        }
+    },
+
+
+    // client user
+
+
+    drawerNavigator_client: {
+        screen: drawerNavigator_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    logout_client: {
+        screen: Logout_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    login_client: {
+        screen: Login_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    showPrice_client: {
+        screen: ShowPrice_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    priceOrderDet_client: {
+        screen: PriceOrderDet_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    rate_client: {
+        screen: Rate_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    addRate_client: {
+        screen: AddRate_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    followOrder_client: {
+        screen: FollowOrder_client,
         navigationOptions: {
             header: null
         }
@@ -88,26 +313,38 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
+    familyProductDet_client: {
+        screen: FamilyProductDet_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    followDelegate_client: {
+        screen: FollowDelegate_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    location_client: {
+        screen: Location_client,
+        navigationOptions: {
+            header: null
+        }
+    },
+    orderSent_client: {
+        screen: OrderSent_client,
+        navigationOptions: {
+            header: null
+        }
+    },
     orderNow_client: {
         screen: OrderNow_client,
         navigationOptions: {
             header: null
         }
     },
-    drawerNavigator_client: {
-        screen: DrawerNavigator,
-        navigationOptions: {
-            header: null
-        }
-    },
     familyDet_client: {
         screen: FamilyDet_client,
-        navigationOptions: {
-            header: null
-        }
-    },
-    familyProductDet_client: {
-        screen: FamilyProductDet_client,
         navigationOptions: {
             header: null
         }
@@ -148,8 +385,8 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    contactUa_client: {
-        screen: ContactUa_client,
+    contactUs_client: {
+        screen: ContactUs_client,
         navigationOptions: {
             header: null
         }
@@ -220,12 +457,6 @@ const AppNavigator = createStackNavigator({
             header: null
         }
     },
-    login_client: {
-        screen: Login_client,
-        navigationOptions: {
-            header: null
-        }
-    },
     verifyCode_client: {
         screen: VerifyCode_client,
         navigationOptions: {
@@ -234,12 +465,6 @@ const AppNavigator = createStackNavigator({
     },
     forgetPassword_client: {
         screen: ForgetPassword_client,
-        navigationOptions: {
-            header: null
-        }
-    },
-    user: {
-        screen: User,
         navigationOptions: {
             header: null
         }

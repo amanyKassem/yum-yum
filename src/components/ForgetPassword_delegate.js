@@ -8,7 +8,7 @@ import COLORS from '../../src/consts/colors'
 
 const height = Dimensions.get('window').height;
 
-class ForgetPassword_client extends Component {
+class ForgetPassword_delegate extends Component {
     constructor(props){
         super(props);
 
@@ -43,7 +43,7 @@ class ForgetPassword_client extends Component {
                                     </Item>
 
 
-                                    <TouchableOpacity onPress={ () => this.props.navigation.navigate("verifyCode_client" )} style={[styles.yellowBtn , styles.mt15, styles.mb10]}>
+                                    <TouchableOpacity onPress={ () => this.props.navigation.navigate("verifyCode_delegate" )} style={[styles.yellowBtn , styles.mt15, styles.mb10]}>
                                         <Text style={styles.whiteText}>{ i18n.t('confirm') }</Text>
                                     </TouchableOpacity>
 
@@ -59,4 +59,4 @@ class ForgetPassword_client extends Component {
     }
 }
 
-export default ForgetPassword_client;
+export default ForgetPassword_delegate;

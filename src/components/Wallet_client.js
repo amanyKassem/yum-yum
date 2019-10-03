@@ -17,7 +17,7 @@ class Wallet_client extends Component {
     }
 
     static navigationOptions = () => ({
-        drawerLabel: 'المحفظة' ,
+        drawerLabel:  i18n.t('wallet')  ,
         drawerIcon: (<Image source={require('../../assets/images/noun_account.png')} style={styles.drawerImg} resizeMode={'contain'} /> )
     })
 
@@ -37,13 +37,15 @@ class Wallet_client extends Component {
                         </Button>
                     </View>
 
-                    <Text style={[styles.headerText ]}>المحفظة</Text>
+                    <Text style={[styles.headerText ]}>{i18n.t('wallet')}</Text>
 
                     <View style={styles.directionRow}>
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
 
@@ -52,13 +54,13 @@ class Wallet_client extends Component {
                         <View style={[styles.homeSection , {marginTop:20}]}>
                             <View style={styles.directionColumnCenter}>
                                 <Image source={require('../../assets/images/money.png')} style={[styles.wallet , styles.transform]} resizeMode={'contain'} />
-                                <Text style={[styles.yellowText , styles.mt25 ]}>رصيدك الحالي</Text>
+                                <Text style={[styles.yellowText, styles.tAC , styles.mt25 ]}>{i18n.t('currentBalance')}</Text>
                                 <Text style={[styles.grayText , styles.tAC , styles.mt15]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى</Text>
                                 <View style={[styles.grayBack]}>
                                     <Text style={[styles.yellowText , {fontSize:25} ]}>900 رس</Text>
                                 </View>
                                 <TouchableOpacity  style={[styles.yellowBtn , styles.mt50, styles.mb10]}>
-                                    <Text style={styles.whiteText}>شحن رصيد</Text>
+                                    <Text style={styles.whiteText}>{i18n.t('recharge')}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

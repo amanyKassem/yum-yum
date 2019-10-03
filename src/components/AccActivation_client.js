@@ -39,7 +39,7 @@ class AccActivation_client extends Component {
 
                                     <Item style={styles.loginItem} bordered>
                                         <Label style={[styles.label ]}>{ i18n.t('activationCode') }</Label>
-                                        <Input placeholder={'الرجاء ادخال كود التفعيل المرسل عبر الجوال'} placeholderTextColor={COLORS.placeholderColor} onChangeText={(activationCode) => this.setState({activationCode})} keyboardType={'number-pad'} style={styles.input}  />
+                                        <Input placeholder={ i18n.t('enterVerify') } placeholderTextColor={COLORS.placeholderColor} onChangeText={(activationCode) => this.setState({activationCode})} keyboardType={'number-pad'} style={styles.input}  />
                                     </Item>
 
 

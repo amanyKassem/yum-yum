@@ -8,7 +8,7 @@ import {
     ScrollView,
     TouchableOpacity,
     FlatList,
-    KeyboardAvoidingView
+    KeyboardAvoidingView, I18nManager
 } from "react-native";
 import {Container, Content, Header, Button, Item, Input, Form, Label, Textarea} from 'native-base'
 import styles from '../../assets/styles'
@@ -58,7 +58,7 @@ class FamilyDet_client extends Component {
 
                     </View>
                     <View style={[styles.locationView]}>
-                        <Text style={[styles.grayText , {fontSize:13 , lineHeight:16} ]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</Text>
+                        <Text style={[styles.grayText , {fontSize:13 , lineHeight:16 , writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',} ]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -120,13 +120,13 @@ class FamilyDet_client extends Component {
                     <Form style={{ width: '100%' }}>
 
                         <Item style={[styles.loginItem]} bordered>
-                            <Label style={[styles.label ]}>تفاصيل الطلب</Label>
+                            <Label style={[styles.label ]}>{i18n.t('orderDet')}</Label>
                             <Textarea onBlur={() => this.unActiveInput('msg')} onFocus={() => this.activeInput('msg')} placeholderTextColor={COLORS.placeholderColor}
                                       onChangeText={(msg) => this.setState({msg})} autoCapitalize='none'
-                                      style={[styles.input , {borderTopRightRadius:25 ,
+                                      style={[styles.input , {borderTopRightRadius:25 ,borderTopLeftRadius:25 ,
                                           borderColor: this.state.msgStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
                                           backgroundColor: this.state.msgStatus === 1 ? '#fff' : COLORS.lightGray ,
-                                          height:120 , paddingVertical:10}]} placeholder="التفاصيل" />
+                                          height:120 , paddingVertical:10}]} placeholder={i18n.t('details')} />
                         </Item>
 
                         <TouchableOpacity  style={[styles.yellowBtn , styles.mb10]}>
@@ -169,14 +169,16 @@ class FamilyDet_client extends Component {
                             </Button>
                         </View>
 
-                        <Text style={[styles.headerText , {right:0} ]}>تفاصيل الاسرة</Text>
+                        <Text style={[styles.headerText , {right:0} ]}>{ i18n.t('familyDetails') }</Text>
 
                         <View style={styles.directionRow}>
                             <View>
                                 <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                                     <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                                 </Button>
-                                <Text style={styles.cartNum}>1</Text>
+                                <View style={styles.cartNum}>
+                                    <Text style={styles.cartNumText}>12</Text>
+                                </View>
                             </View>
                             <Button onPress={() => this.props.navigation.goBack() } transparent  style={styles.headerBtn}>
                                 <Image source={require('../../assets/images/arrow_left.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
@@ -212,27 +214,27 @@ class FamilyDet_client extends Component {
                     <View style={styles.mainScroll}>
                         <ScrollView style={{}} horizontal={true} showsHorizontalScrollIndicator={false}>
                             <TouchableOpacity onPress={ () => this.setState({activeType:0})} style={styles.scrollView}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 0 ? COLORS.yellow : COLORS.boldGray}]}>الكل</Text>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 0 ? COLORS.yellow : COLORS.boldGray}]}>{ i18n.t('all') }</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 0 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={ () => this.setState({activeType:1})} style={styles.scrollView}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 1 ? COLORS.yellow : COLORS.boldGray}]}>مشويات</Text>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 1 ? COLORS.yellow : COLORS.boldGray}]}>{ i18n.t('barbecue') }</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 1 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={ () => this.setState({activeType:2})} style={styles.scrollView}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 2 ? COLORS.yellow : COLORS.boldGray}]}>حلويات</Text>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 2 ? COLORS.yellow : COLORS.boldGray}]}>{ i18n.t('sweets') }</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 2 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={ () => this.setState({activeType:3})} style={styles.scrollView}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 3 ? COLORS.yellow : COLORS.boldGray}]}>سلطات</Text>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 3 ? COLORS.yellow : COLORS.boldGray}]}>{ i18n.t('salads') }</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 3 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={ () => this.setState({activeType:4})} style={styles.scrollView}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 4 ? COLORS.yellow : COLORS.boldGray}]}>معجنات</Text>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 4 ? COLORS.yellow : COLORS.boldGray}]}>{ i18n.t('pastry') }</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 4 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={ () => this.setState({activeType:5})} style={[styles.scrollView , {width:90}]}>
-                                <Text style={[styles.scrollText,{color:this.state.activeType === 5 ? COLORS.yellow : COLORS.boldGray}]}>طلب خاص</Text>
+                                <Text style={[styles.scrollText,{color:this.state.activeType === 5 ? COLORS.yellow : COLORS.boldGray}]}>{ i18n.t('specialOrder') }</Text>
                                 <View style={[styles.triangle , {borderBottomColor:this.state.activeType === 5 ? COLORS.yellow : 'transparent'}]} />
                             </TouchableOpacity>
                         </ScrollView>

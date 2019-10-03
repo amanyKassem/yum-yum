@@ -25,7 +25,7 @@ class Cart_client extends Component {
     }
 
     static navigationOptions = () => ({
-        drawerLabel: 'السلة' ,
+        drawerLabel: i18n.t('cart') ,
         drawerIcon: (<Image source={require('../../assets/images/noun_basket.png')} style={styles.drawerImg} resizeMode={'contain'} /> )
     })
 
@@ -42,7 +42,7 @@ class Cart_client extends Component {
                     </View>
                     <View style={[styles.locationView]}>
                         <Image source={require('../../assets/images/maps.png')} style={[styles.locationImg]} resizeMode={'contain'} />
-                        <Text style={[styles.grayText , {fontSize:12} ]}>{item.location}</Text>
+                        <Text style={[styles.grayText , {writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',fontSize:12} ]}>{item.location}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -65,13 +65,15 @@ class Cart_client extends Component {
                         </Button>
                     </View>
 
-                    <Text style={[styles.headerText ]}>سلة المشتريات</Text>
+                    <Text style={[styles.headerText ]}>{i18n.t('cart')}</Text>
 
                     <View style={styles.directionRow}>
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
                 <Content contentContainerStyle={styles.flexGrow} style={{}} >

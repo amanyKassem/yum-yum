@@ -58,14 +58,16 @@ class Language_client extends Component {
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
 
                 <Content contentContainerStyle={styles.flexGrow} style={{}} >
                     <ImageBackground source={require('../../assets/images/bg.png')} resizeMode={'cover'} style={styles.imageBackground}>
                         <View style={[styles.backTitle, {marginTop:20}]}>
-                            <Text style={[styles.titleText ]}>اختر اللغة</Text>
+                            <Text style={[styles.titleText , styles.asfs]}>{i18n.t('chooseLang')}</Text>
                         </View>
                         <View style={[styles.homeSection, {marginTop:20} ]}>
 

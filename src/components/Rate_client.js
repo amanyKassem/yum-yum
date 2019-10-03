@@ -8,7 +8,7 @@ import COLORS from '../../src/consts/colors'
 
 const height = Dimensions.get('window').height;
 
-class OrderSent_client extends Component {
+class Rate_client extends Component {
     constructor(props){
         super(props);
 
@@ -31,13 +31,9 @@ class OrderSent_client extends Component {
                     <ImageBackground source={require('../../assets/images/bg.png')} resizeMode={'cover'} style={styles.imageBackground}>
                         <View style={[styles.homeSection ]}>
                             <View style={styles.directionColumnCenter}>
-                                <Image source={require('../../assets/images/send.png')} style={[styles.wallet , styles.transform]} resizeMode={'contain'} />
-                                <Text style={[styles.yellowText , styles.tAC, styles.mt25 , styles.mb15]}>{i18n.t('sentOrder')}</Text>
-                                <Text style={[styles.grayText , styles.tAC]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</Text>
-                                <TouchableOpacity onPress={ () => this.props.navigation.navigate("followOrder_client")} style={[styles.yellowBtn , styles.mt50, styles.mb10]}>
-                                    <Text style={styles.whiteText}>{i18n.t('orderTracking')}</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={ () => this.props.navigation.navigate("drawerNavigator_client")} style={[styles.yellowBtn , styles.mb10]}>
+                                <Image source={require('../../assets/images/checkmark.png')} style={[styles.checkMark ]} resizeMode={'contain'} />
+                                <Text style={[styles.yellowText , styles.mt25 , styles.tAC , styles.mb15]}>{i18n.t('urReview')}</Text>
+                                <TouchableOpacity onPress={ () => this.props.navigation.navigate("drawerNavigator_client")} style={[styles.yellowBtn , styles.mt25 , ]}>
                                     <Text style={styles.whiteText}>{i18n.t('home')}</Text>
                                 </TouchableOpacity>
                             </View>
@@ -50,4 +46,4 @@ class OrderSent_client extends Component {
     }
 }
 
-export default OrderSent_client;
+export default Rate_client;

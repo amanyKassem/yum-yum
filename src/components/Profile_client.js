@@ -43,7 +43,7 @@ class Profile_client extends Component {
     }
 
     static navigationOptions = () => ({
-        drawerLabel: 'الملف الشخصي' ,
+        drawerLabel: i18n.t('profile') ,
         drawerIcon: (<Image source={require('../../assets/images/noun_profile.png')} style={styles.drawerImg} resizeMode={'contain'} /> )
     })
 
@@ -110,13 +110,15 @@ class Profile_client extends Component {
                         </Button>
                     </View>
 
-                    <Text style={[styles.headerText ]}>الملف الشخصي</Text>
+                    <Text style={[styles.headerText ]}>{i18n.t('profile')}</Text>
 
                     <View style={styles.directionRow}>
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
 
@@ -147,7 +149,7 @@ class Profile_client extends Component {
 
                                 <Item style={styles.loginItem} bordered>
                                     <Label style={[styles.label ]}>{ i18n.t('username') }</Label>
-                                    <Input placeholder={'الرجاء ادخال اسم المستخدم'} onBlur={() => this.unActiveInput('username')} onFocus={() => this.activeInput('username')} placeholderTextColor={COLORS.placeholderColor}
+                                    <Input placeholder={ i18n.t('enterUsername') } onBlur={() => this.unActiveInput('username')} onFocus={() => this.activeInput('username')} placeholderTextColor={COLORS.placeholderColor}
                                            onChangeText={(username) => this.setState({username})} autoCapitalize='none'
                                            style={[styles.input , {borderTopRightRadius:25 , paddingRight:33 ,
                                                borderColor: this.state.usernameStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
@@ -157,7 +159,7 @@ class Profile_client extends Component {
 
                                 <Item style={styles.loginItem} bordered>
                                     <Label style={[styles.label ]}>{ i18n.t('phoneNumber') }</Label>
-                                    <Input placeholder={'الرجاء ادخال رقم الجوال'} onBlur={() => this.unActiveInput('phone')} onFocus={() => this.activeInput('phone')} placeholderTextColor={COLORS.placeholderColor}
+                                    <Input placeholder={ i18n.t('enterPhone') } onBlur={() => this.unActiveInput('phone')} onFocus={() => this.activeInput('phone')} placeholderTextColor={COLORS.placeholderColor}
                                            onChangeText={(phone) => this.setState({phone})} keyboardType={'number-pad'}
                                            style={[styles.input , {borderTopRightRadius:25 , paddingRight:33 ,
                                                borderColor: this.state.phoneStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
@@ -168,7 +170,7 @@ class Profile_client extends Component {
 
                                 <Item style={[styles.loginItem]} bordered>
                                     <Label style={[styles.label ]}>{ i18n.t('email') }</Label>
-                                    <Input placeholder={'الرجاء ادخال البريد الالكتروني'} onBlur={() => this.unActiveInput('email')} onFocus={() => this.activeInput('email')} placeholderTextColor={COLORS.placeholderColor}
+                                    <Input placeholder={ i18n.t('enterMail') } onBlur={() => this.unActiveInput('email')} onFocus={() => this.activeInput('email')} placeholderTextColor={COLORS.placeholderColor}
                                            onChangeText={(email) => this.setState({email})} keyboardType={'email-address'}
                                            style={[styles.input , {borderTopRightRadius:25 , paddingRight:33 ,
                                                borderColor: this.state.emailStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
@@ -195,7 +197,7 @@ class Profile_client extends Component {
 
                                 <Item style={styles.loginItem} bordered>
                                     <Label style={[styles.label ]}>{ i18n.t('oldPass') }</Label>
-                                    <Input placeholder={'الرجاء ادخال كلمة المرور القديمة'} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(oldPass) => this.setState({oldPass})} secureTextEntry={this.state.showOldPass === true ? true : false} style={[styles.input  ,{borderTopRightRadius:25}]}  />
+                                    <Input placeholder={i18n.t('enterOldPass')} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(oldPass) => this.setState({oldPass})} secureTextEntry={this.state.showOldPass === true ? true : false} style={[styles.input  ,{borderTopRightRadius:25,paddingRight:40}]}  />
 
                                     <TouchableOpacity style={styles.eye} onPress={() => this.setState({showOldPass: !this.state.showOldPass})}>
                                         <Icon type={'FontAwesome'} name={ this.state.showOldPass === true ? 'eye' : 'eye-slash'} style={[styles.eyeIcon]} />
@@ -204,7 +206,7 @@ class Profile_client extends Component {
 
                                 <Item style={styles.loginItem} bordered>
                                     <Label style={[styles.label ]}>{ i18n.t('newPass') }</Label>
-                                    <Input placeholder={'الرجاء ادخال كلمة المرور الجديدة'} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(newPass) => this.setState({newPass})} secureTextEntry={this.state.showNewPass === true ? true : false} style={[styles.input  ,{borderTopRightRadius:25}]}  />
+                                    <Input placeholder={i18n.t('enterNewPass')} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(newPass) => this.setState({newPass})} secureTextEntry={this.state.showNewPass === true ? true : false} style={[styles.input  ,{borderTopRightRadius:25,paddingRight:40}]}  />
 
                                     <TouchableOpacity style={styles.eye} onPress={() => this.setState({showNewPass: !this.state.showNewPass})}>
                                         <Icon type={'FontAwesome'} name={ this.state.showNewPass === true ? 'eye' : 'eye-slash'} style={[styles.eyeIcon]} />
@@ -213,7 +215,7 @@ class Profile_client extends Component {
 
                                 <Item style={styles.loginItem} bordered>
                                     <Label style={[styles.label ]}>{ i18n.t('verifyNewPass') }</Label>
-                                    <Input placeholder={'تأكيد كلمة المرور الجديده'} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(verifyNewPass) => this.setState({verifyNewPass})} secureTextEntry={this.state.showVerifiedPass === true ? true : false} style={[styles.input  ,{borderTopRightRadius:25}]}  />
+                                    <Input placeholder={i18n.t('enterConfirmPass')} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(verifyNewPass) => this.setState({verifyNewPass})} secureTextEntry={this.state.showVerifiedPass === true ? true : false} style={[styles.input  ,{borderTopRightRadius:25,paddingRight:40}]}  />
 
                                     <TouchableOpacity style={styles.eye} onPress={() => this.setState({showVerifiedPass: !this.state.showVerifiedPass})}>
                                         <Icon type={'FontAwesome'} name={ this.state.showVerifiedPass === true ? 'eye' : 'eye-slash'} style={[styles.eyeIcon]} />

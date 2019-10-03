@@ -36,44 +36,43 @@ class Login_client extends Component {
                             <Text style={[styles.yellowText , styles.mb15]}>{ i18n.t('loginButton') }</Text>
                             <Text style={[styles.grayText , styles.tAC]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى</Text>
 
-                            <KeyboardAvoidingView behavior={'padding'} style={styles.keyboardAvoid}>
                                 <Form style={{ width: '100%' , marginTop:30}}>
+                                    <KeyboardAvoidingView behavior={'padding'} style={styles.keyboardAvoid}>
 
-                                    <Item style={styles.loginItem} bordered>
-                                        <Label style={[styles.label ]}>{ i18n.t('phoneNumber') }</Label>
-                                        <Input placeholder={'الرجاء ادخال رقم الجوال'} placeholderTextColor={COLORS.placeholderColor} onChangeText={(phone) => this.setState({phone})} keyboardType={'number-pad'} style={styles.input}  />
-                                    </Item>
+                                        <Item style={styles.loginItem} bordered>
+                                            <Label style={[styles.label ]}>{ i18n.t('phoneNumber') }</Label>
+                                            <Input placeholder={ i18n.t('enterPhone') } placeholderTextColor={COLORS.placeholderColor} onChangeText={(phone) => this.setState({phone})} keyboardType={'number-pad'} style={styles.input}  />
+                                        </Item>
 
-                                    <Item style={styles.loginItem} bordered>
-                                        <Label style={[styles.label ]}>{ i18n.t('password') }</Label>
-                                        <Input placeholder={'الرجاء ادخال كلمة المرور'} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(password) => this.setState({password})} secureTextEntry={this.state.showPass === true ? true : false} style={styles.input}  />
+                                        <Item style={styles.loginItem} bordered>
+                                            <Label style={[styles.label ]}>{ i18n.t('password') }</Label>
+                                            <Input placeholder={i18n.t('enterPass')} placeholderTextColor={COLORS.placeholderColor} autoCapitalize='none' onChangeText={(password) => this.setState({password})} secureTextEntry={this.state.showPass === true ? true : false} style={[styles.input , {paddingRight:40}]}  />
 
-                                        <TouchableOpacity style={styles.eye} onPress={() => this.setState({showPass: !this.state.showPass})}>
-                                            <Icon type={'FontAwesome'} name={ this.state.showPass === true ? 'eye' : 'eye-slash'} style={[styles.eyeIcon]} />
+                                            <TouchableOpacity style={styles.eye} onPress={() => this.setState({showPass: !this.state.showPass})}>
+                                                <Icon type={'FontAwesome'} name={ this.state.showPass === true ? 'eye' : 'eye-slash'} style={[styles.eyeIcon]} />
+                                            </TouchableOpacity>
+                                        </Item>
+
+
+                                        <TouchableOpacity onPress={ () => this.props.navigation.navigate('drawerNavigator_client')} style={[styles.yellowBtn , styles.mt15, styles.mb10]}>
+                                            <Text style={styles.whiteText}>{ i18n.t('loginButton') }</Text>
                                         </TouchableOpacity>
-                                    </Item>
 
+                                        <TouchableOpacity onPress={ () => this.props.navigation.navigate('drawerNavigator_client')} style={[styles.yellowBtn , styles.mb10 , {backgroundColor:COLORS.grayBtn}]}>
+                                            <Text style={[styles.whiteText , {color: COLORS.boldGray}]}>{ i18n.t('visitor') }</Text>
+                                        </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={ () => this.props.navigation.navigate('drawerNavigator_client')} style={[styles.yellowBtn , styles.mt15, styles.mb10]}>
-                                        <Text style={styles.whiteText}>{ i18n.t('loginButton') }</Text>
-                                    </TouchableOpacity>
+                                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('forgetPassword_client')} style={styles.forgetPass}>
+                                            <Text style={[styles.grayText , {fontSize:14} ]}>{ i18n.t('forgetPass') }</Text>
+                                        </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={ () => this.props.navigation.navigate('drawerNavigator_client')} style={[styles.yellowBtn , styles.mb10 , {backgroundColor:COLORS.grayBtn}]}>
-                                        <Text style={[styles.whiteText , {color: COLORS.boldGray}]}>{ i18n.t('visitor') }</Text>
-                                    </TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => this.props.navigation.navigate('register_client')} style={[styles.forgetPass , styles.mb100]}>
+                                            <Text style={[styles.grayText , {fontSize:14} ]}>{ i18n.t('haveNoAcc') } </Text>
+                                            <Text style={[styles.grayText , {fontSize:14 , color:COLORS.yellow} ]}>{ i18n.t('clickHere') }</Text>
+                                        </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('forgetPassword_client')} style={styles.forgetPass}>
-                                        <Text style={[styles.grayText , {fontSize:14} ]}>{ i18n.t('forgetPass') }</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity onPress={ () => this.props.navigation.navigate('register_client')} style={[styles.forgetPass , styles.mb100]}>
-                                        <Text style={[styles.grayText , {fontSize:14} ]}>ليس لديك حساب ؟ </Text>
-                                        <Text style={[styles.grayText , {fontSize:14 , color:COLORS.yellow} ]}>اضغط هنا</Text>
-                                    </TouchableOpacity>
-
-
+                                    </KeyboardAvoidingView>
                                 </Form>
-                            </KeyboardAvoidingView>
                         </View>
                     </ImageBackground>
                 </Content>

@@ -19,10 +19,10 @@ import COLORS from '../../src/consts/colors'
 const height = Dimensions.get('window').height;
 
 const orderDetArray = [
-    { title: "تفاصيل الطلب"},
+    { title: i18n.t('orderDet') }
 ];
 const delegateArray = [
-    { title: "معلومات المندوب"},
+    { title: i18n.t('delegateInfo')},
 ];
 
 class FollowOrder_client extends Component {
@@ -31,6 +31,7 @@ class FollowOrder_client extends Component {
 
         this.state={
             selectedId: 4,
+            isFamilyOrder:true
         }
     }
 
@@ -58,56 +59,67 @@ class FollowOrder_client extends Component {
             <View>
                 <View style={[styles.notiBlock , {paddingHorizontal:30 , paddingVertical:7 , marginTop:5  , marginBottom:0}]}>
                     <View style={{flex:1}}>
-                        <Text style={[styles.boldGrayText ]}>اسم المنتج</Text>
+                        <Text style={[styles.boldGrayText, styles.asfs ]}>اسم المنتج</Text>
                     </View>
                     <View style={[styles.directionRow , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                         <Text style={[styles.boldGrayText , {color:COLORS.yellow , marginRight:5} ]}>25.00</Text>
-                        <Text style={[styles.boldGrayText ]}>رس</Text>
+                        <Text style={[styles.boldGrayText ]}>{i18n.t('RS')}</Text>
                     </View>
                 </View>
                 <View style={[styles.notiBlock , {paddingHorizontal:30 , paddingVertical:7 , marginTop:5 , marginBottom:0 }]}>
                     <View style={{flex:1}}>
-                        <Text style={[styles.boldGrayText ]}>اسم المنتج</Text>
+                        <Text style={[styles.boldGrayText , styles.asfs]}>اسم المنتج</Text>
                     </View>
                     <View style={[styles.directionRow , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                         <Text style={[styles.boldGrayText , {color:COLORS.yellow , marginRight:5} ]}>25.00</Text>
-                        <Text style={[styles.boldGrayText ]}>رس</Text>
+                        <Text style={[styles.boldGrayText ]}>{i18n.t('RS')}</Text>
                     </View>
                 </View>
                 <View style={[styles.notiBlock , {paddingHorizontal:30 , paddingVertical:7 , marginTop:5 , marginBottom:0 }]}>
                     <View style={{flex:1}}>
-                        <Text style={[styles.boldGrayText ]}>اسم المنتج</Text>
+                        <Text style={[styles.boldGrayText, styles.asfs ]}>اسم المنتج</Text>
                     </View>
                     <View style={[styles.directionRow , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                         <Text style={[styles.boldGrayText , {color:COLORS.yellow , marginRight:5} ]}>25.00</Text>
-                        <Text style={[styles.boldGrayText ]}>رس</Text>
+                        <Text style={[styles.boldGrayText ]}>{i18n.t('RS')}</Text>
                     </View>
                 </View>
 
 
                 <View style={styles.mb15}>
                     <View style={[styles.backTitle , styles.mt25 , styles.mb15]}>
-                        <Text style={[styles.yellowText , {fontSize:15}]}>طريقة الدفع</Text>
+                        <Text style={[styles.yellowText, styles.asfs , {fontSize:15}]}>{i18n.t('paymentMethod')}</Text>
                     </View>
-                    <Text style={[styles.check , {marginHorizontal: 30}]}>الدفع عند الاستلام</Text>
+                    <Text style={[styles.check, styles.asfs , {marginHorizontal: 30}]}>الدفع عند الاستلام</Text>
                 </View>
 
                 <View style={styles.mb15}>
                     <View style={[styles.backTitle , styles.mb15]}>
-                        <Text style={[styles.yellowText , {fontSize:15}]}>تفاصيل التسليم</Text>
+                        <Text style={[styles.yellowText, styles.asfs , {fontSize:15}]}>{i18n.t('deliveryDetails')}</Text>
                     </View>
-                    <View style={{paddingHorizontal:30}}>
-                        <Text style={[styles.check , {fontSize: 13}]}>موقع التسليم</Text>
+                    <View style={[ styles.mb15 , {paddingHorizontal:30}]}>
+                        <Text style={[styles.check, styles.asfs , {fontSize: 13}]}>{i18n.t('deliveryLocation')}</Text>
                         <View style={[styles.directionRowSpace , styles.mt15]}>
                             <View style={[styles.locationView , {marginTop:0}]}>
                                 <Image source={require('../../assets/images/maps.png')} style={[styles.locationImg]} resizeMode={'contain'} />
                                 <Text style={[styles.grayText , {fontSize:12} ]}>الرياض - المملكة العربية السعودية</Text>
                             </View>
-                            <TouchableOpacity>
-                                <Text style={[styles.grayText , {color:COLORS.yellow,fontSize:12} ]}>( مشاهده الموقع )</Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('location_client')}>
+                                <Text style={[styles.grayText , {color:COLORS.yellow,fontSize:12} ]}>( {i18n.t('seeLocation')} )</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
+                    {
+                        this.state.isFamilyOrder?
+                            <View style={{paddingHorizontal:30}}>
+                                <Text style={[styles.check, styles.asfs , {fontSize: 13}]}>{i18n.t('deliveryTime')}</Text>
+                                <View style={[styles.directionRowSpace , styles.mt15]}>
+                                    <Text style={[styles.grayText , {fontSize:12} ]}>9/7/2020</Text>
+                                    <Text style={[styles.grayText , {fontSize:12} ]}>8:00ص</Text>
+                                </View>
+                            </View>:<View/>
+                    }
+
                 </View>
 
             </View>
@@ -127,12 +139,12 @@ class FollowOrder_client extends Component {
     _renderDelegateContent(item) {
         return (
             <View style={{paddingHorizontal:30}}>
-                <Text style={[styles.check ,styles.mt15 , styles.mb15 , {fontSize: 13}]}>اسم العميل</Text>
+                <Text style={[styles.check ,styles.mt15 , styles.mb15, styles.asfs , {fontSize: 13}]}>{i18n.t('customerName')}</Text>
                 <View style={[styles.backTitle , styles.mb15]}>
-                    <Text style={[styles.check , {fontSize:13}]}>اماني قاسم</Text>
+                    <Text style={[styles.check, styles.asfs , {fontSize:13}]}>اماني قاسم</Text>
                 </View>
-                <TouchableOpacity style={[styles.mb15,{alignSelf:'center'}]}>
-                    <Text style={[styles.yellowText , {fontSize:13} ]}>( مشاهده تتبع المندوب )</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('followDelegate_client')} style={[styles.mb15,{alignSelf:'center'}]}>
+                    <Text style={[styles.yellowText , {fontSize:13} ]}>( {i18n.t('delegateTracking')} )</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -154,14 +166,16 @@ class FollowOrder_client extends Component {
                         </Button>
                     </View>
 
-                    <Text style={[styles.headerText , {right:0} ]}>تفاصيل الطلب</Text>
+                    <Text style={[styles.headerText , {right:0} ]}>{i18n.t('orderDet')}</Text>
 
                     <View style={styles.directionRow}>
                         <View>
                             <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                                 <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                             </Button>
-                            <Text style={styles.cartNum}>1</Text>
+                            <View style={styles.cartNum}>
+                                <Text style={styles.cartNumText}>12</Text>
+                            </View>
                         </View>
                         <Button onPress={() => this.props.navigation.goBack()} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/arrow_left.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
@@ -183,7 +197,7 @@ class FollowOrder_client extends Component {
                             </View>
                             <View style={[styles.directionColumnCenter , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                                 <View style={[styles.directionRow ]}>
-                                    <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>رقم الطلب</Text>
+                                    <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>{i18n.t('orderNum')}</Text>
                                 </View>
                                 <View style={[styles.locationView]}>
                                     <Text style={[styles.grayText, {fontSize:12} ]}>12345</Text>
@@ -192,7 +206,7 @@ class FollowOrder_client extends Component {
                         </View>
 
                         <View style={styles.backTitle}>
-                            <Text style={[styles.yellowText , {fontSize:15}]}>متابعة الطلب</Text>
+                            <Text style={[styles.yellowText , styles.asfs , {fontSize:15}]}>{i18n.t('followOrder')}</Text>
                         </View>
 
                         <View style={styles.followBlock}>
@@ -203,7 +217,7 @@ class FollowOrder_client extends Component {
                                         borderColor:this.state.selectedId == 1 || this.state.selectedId == 2 || this.state.selectedId == 3 || this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray}]}>
                                     <Icon type={'Feather'} name={'check'} style={[styles.checkCircle]} />
                                 </View>
-                                <Text style={[styles.check]}>تم استلام الطلب</Text>
+                                <Text style={[styles.check]}>{i18n.t('orderHasReceived')}</Text>
                                 <View style={[styles.stepLine ,
                                     {backgroundColor:this.state.selectedId == 1 || this.state.selectedId == 2 || this.state.selectedId == 3 || this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray,}]}/>
                             </View>
@@ -214,7 +228,7 @@ class FollowOrder_client extends Component {
                                     borderColor:this.state.selectedId == 2 || this.state.selectedId == 3 || this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray}]}>
                                     <Icon type={'Feather'} name={'check'} style={[styles.checkCircle]} />
                                 </View>
-                                <Text style={[styles.check]}>جاري تجهيز الطلب</Text>
+                                <Text style={[styles.check]}>{i18n.t('processOrder')}</Text>
                                 <View style={[styles.stepLine ,
                                     {backgroundColor:this.state.selectedId == 2 || this.state.selectedId == 3 || this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray,}]}/>
                             </View>
@@ -225,7 +239,7 @@ class FollowOrder_client extends Component {
                                         borderColor:this.state.selectedId == 3 || this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray}]}>
                                     <Icon type={'Feather'} name={'check'} style={[styles.checkCircle]} />
                                 </View>
-                                <Text style={[styles.check]}>تم تسليم الطلب للمندوب</Text>
+                                <Text style={[styles.check]}>{i18n.t('orderRecieve')}</Text>
                                 <View style={[styles.stepLine ,
                                     {backgroundColor:this.state.selectedId == 3 || this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray,}]}/>
                             </View>
@@ -236,7 +250,7 @@ class FollowOrder_client extends Component {
                                         borderColor:this.state.selectedId == 4  ?COLORS.yellow :COLORS.boldGray}]}>
                                     <Icon type={'Feather'} name={'check'} style={[styles.checkCircle]} />
                                 </View>
-                                <Text style={[styles.check]}>تم توصيل الطلب</Text>
+                                <Text style={[styles.check]}>{i18n.t('orderHasSent')}</Text>
                             </View>
 
                         </View>
@@ -247,7 +261,7 @@ class FollowOrder_client extends Component {
                             animation={true}
                             expanded={true}
                             renderHeader={this._renderHeader}
-                            renderContent={this._renderContent}
+                            renderContent={() => this._renderContent()}
                             style={styles.accordion}
                         />
 
@@ -259,7 +273,7 @@ class FollowOrder_client extends Component {
                                     animation={true}
                                     expanded={true}
                                     renderHeader={this._renderDelegateHeader}
-                                    renderContent={this._renderDelegateContent}
+                                    renderContent={() => this._renderDelegateContent() }
                                     style={styles.accordion}
                                 /> :<View/>
                         }
@@ -267,7 +281,7 @@ class FollowOrder_client extends Component {
                         {
                             this.state.selectedId == 4 ?
                                 <TouchableOpacity onPress={ () => this.props.navigation.navigate("addRate_client")} style={[styles.yellowBtn, {borderRadius: 0, height: 50 }]}>
-                                    <Text style={styles.whiteText}>اضف تقييمك</Text>
+                                    <Text style={styles.whiteText}>{i18n.t('addRate')}</Text>
                                 </TouchableOpacity>
                                 : <View/>
                         }

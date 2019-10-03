@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import {View, Text, Image, Animated, Dimensions, ScrollView, TouchableOpacity, FlatList} from "react-native";
+import {
+    View,
+    Text,
+    Image,
+    Animated,
+    Dimensions,
+    ScrollView,
+    TouchableOpacity,
+    FlatList,
+    I18nManager
+} from "react-native";
 import {Container, Content, Header, Button, Item, Input, CheckBox, Icon} from 'native-base'
 import styles from '../../assets/styles'
 import i18n from '../../locale/i18n'
@@ -18,14 +28,18 @@ class FamilyProductDet_client extends Component {
             availabel: 0,
             starCount:3,
             activeType:0,
-            value:0
+            value:1,
+            selectedId: 0,
         }
     }
 
     static navigationOptions = () => ({
         drawerLabel: () => null,
     });
+    checkAdd(addId){
+        this.setState({ selectedId: addId });
 
+    }
 
     setAnimate(availabel){
         if (availabel === 0){
@@ -61,18 +75,15 @@ class FamilyProductDet_client extends Component {
     }
 
 
-
     increment(){
         this.setState({value: this.state.value + 1 })
     }
 
     decrement(){
-        if (this.state.value === 0){
-            this.setState({value: 0})
-        } else {
+        if (this.state.value > 1)
             this.setState({value: this.state.value - 1})
-        }
     }
+
 
 
 
@@ -96,14 +107,16 @@ class FamilyProductDet_client extends Component {
                             </Button>
                         </View>
 
-                        <Text style={[styles.headerText , {right:0} ]}>تفاصيل المنتج</Text>
+                        <Text style={[styles.headerText , {right:0} ]}>{i18n.t('productDet')}</Text>
 
                         <View style={styles.directionRow}>
                             <View>
                                 <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                                     <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                                 </Button>
-                                <Text style={styles.cartNum}>1</Text>
+                                <View style={styles.cartNum}>
+                                    <Text style={styles.cartNumText}>12</Text>
+                                </View>
                             </View>
                             <Button onPress={() => this.props.navigation.goBack()} transparent  style={styles.headerBtn}>
                                 <Image source={require('../../assets/images/arrow_left.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
@@ -126,7 +139,7 @@ class FamilyProductDet_client extends Component {
                                 <Text style={[styles.productName , {color:COLORS.yellow} ]}>25 ر.س</Text>
                             </View>
                             <View style={[styles.locationView]}>
-                                <Text style={[styles.grayText , {lineHeight:22} ]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة </Text>
+                                <Text style={[styles.grayText , {lineHeight:22, writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr'} ]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس</Text>
                             </View>
                         </View>
 
@@ -134,34 +147,34 @@ class FamilyProductDet_client extends Component {
 
                         <View style={[styles.directionColumn , {flex:1}]}>
                             <View style={[styles.directionRow , styles.locationView , {marginTop:0} ]}>
-                                <Text style={[styles.productName ]}>اضافات</Text>
-                                <Text style={[styles.grayText ,{marginLeft:5}]}>(اختياري)</Text>
+                                <Text style={[styles.productName ]}>{i18n.t('extras')}</Text>
+                                <Text style={[styles.grayText ,{marginLeft:5}]}>({i18n.t('optional')})</Text>
                             </View>
                             <View style={[styles.locationView , styles.directionColumn]}>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(1)} checked={this.state.selectedId == 1 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={true}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(2)} checked={this.state.selectedId == 2 ? true : false} color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(3)} checked={this.state.selectedId == 3 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
                                 </View>
                                 <View style={[styles.directionRowSpace  , styles.w100 , styles.mt15]}>
                                     <View style={[ styles.directionRow]}>
-                                        <CheckBox checked={false}  color={COLORS.yellow} style={styles.quesCheckBox} />
+                                        <CheckBox onPress={ () => this.checkAdd(4)} checked={this.state.selectedId == 4 ? true : false}  color={COLORS.yellow} style={styles.quesCheckBox} />
                                         <Text style={[styles.check]}>اسم الاضافة</Text>
                                     </View>
                                     <Text style={[styles.check, {color:COLORS.yellow}]}>500 ر.س</Text>
@@ -173,7 +186,7 @@ class FamilyProductDet_client extends Component {
 
                         <View style={[styles.directionColumn , {flex:1}]}>
                             <View style={[styles.locationView , {marginTop:0} ]}>
-                                <Text style={[styles.productName ]}>حدد الكمية المطلوبة</Text>
+                                <Text style={[styles.productName ]}>{i18n.t('requiredQuantity')}</Text>
                             </View>
                             <View style={[styles.locationView , styles.directionColumn ]}>
                                 <View style={styles.counterParent}>
@@ -186,14 +199,14 @@ class FamilyProductDet_client extends Component {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={[ styles.total]}>
-                                    <Text style={[styles.check]}>الاجمالي</Text>
+                                    <Text style={[styles.check]}>{i18n.t('total')}</Text>
                                     <Text style={[styles.check, {color:COLORS.yellow , marginLeft:10}]}>20.00 ر.س</Text>
                                 </View>
                                 <TouchableOpacity onPress={ () => this.props.navigation.navigate('orderNow_client')} style={[styles.orderNowBtn , styles.mb15]}>
-                                    <Text style={styles.whiteText}>اطلب الآن</Text>
+                                    <Text style={styles.whiteText}>{i18n.t('orderNow')}</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity  style={[styles.yellowBtn , {width:'90%'}]}>
-                                    <Text style={styles.whiteText}>حجز في وقت أخر</Text>
+                                <TouchableOpacity onPress={ () => this.props.navigation.navigate('orderDet_client')} style={[styles.yellowBtn , {width:'90%'}]}>
+                                    <Text style={styles.whiteText}>{i18n.t('bookLater')}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

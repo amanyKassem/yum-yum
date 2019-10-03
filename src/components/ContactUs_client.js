@@ -18,7 +18,7 @@ import COLORS from '../../src/consts/colors'
 
 const height = Dimensions.get('window').height;
 
-class ContactUa_client extends Component {
+class ContactUs_client extends Component {
     constructor(props){
         super(props);
 
@@ -83,7 +83,9 @@ class ContactUa_client extends Component {
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
 
@@ -91,7 +93,7 @@ class ContactUa_client extends Component {
                     <ImageBackground source={require('../../assets/images/bg.png')} resizeMode={'cover'} style={styles.imageBackground}>
                         <View style={[styles.homeSection , {marginTop:20}]}>
                             <View style={styles.directionColumnCenter}>
-                                <Text style={[styles.yellowText ]}>ارسال رسالة</Text>
+                                <Text style={[styles.yellowText ]}>{ i18n.t('sendMsg') }</Text>
                                 <Text style={[styles.grayText , styles.tAC , styles.mt15]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى</Text>
 
                                 <KeyboardAvoidingView behavior={'padding'} style={styles.keyboardAvoid}>
@@ -99,9 +101,9 @@ class ContactUa_client extends Component {
 
                                         <Item style={styles.loginItem} bordered>
                                             <Label style={[styles.label ]}>{ i18n.t('username') }</Label>
-                                            <Input placeholder={'الرجاء ادخال اسم المستخدم'} onBlur={() => this.unActiveInput('username')} onFocus={() => this.activeInput('username')} placeholderTextColor={COLORS.placeholderColor}
+                                            <Input placeholder={ i18n.t('enterUsername') } onBlur={() => this.unActiveInput('username')} onFocus={() => this.activeInput('username')} placeholderTextColor={COLORS.placeholderColor}
                                                    onChangeText={(username) => this.setState({username})} autoCapitalize='none'
-                                                   style={[styles.input , {borderTopRightRadius:25  ,
+                                                   style={[styles.input , {borderTopRightRadius:25  ,borderTopLeftRadius:25  ,
                                                        borderColor: this.state.usernameStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
                                                        backgroundColor: this.state.usernameStatus === 1 ? '#fff' : COLORS.lightGray }]}  />
                                         </Item>
@@ -109,21 +111,21 @@ class ContactUa_client extends Component {
 
                                         <Item style={[styles.loginItem]} bordered>
                                             <Label style={[styles.label ]}>{ i18n.t('email') }</Label>
-                                            <Input placeholder={'الرجاء ادخال البريد الالكتروني'} onBlur={() => this.unActiveInput('email')} onFocus={() => this.activeInput('email')} placeholderTextColor={COLORS.placeholderColor}
+                                            <Input placeholder={ i18n.t('enterMail') } onBlur={() => this.unActiveInput('email')} onFocus={() => this.activeInput('email')} placeholderTextColor={COLORS.placeholderColor}
                                                    onChangeText={(email) => this.setState({email})} keyboardType={'email-address'}
-                                                   style={[styles.input , {borderTopRightRadius:25 ,
+                                                   style={[styles.input , {borderTopRightRadius:25 ,borderTopLeftRadius:25  ,
                                                        borderColor: this.state.emailStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
                                                        backgroundColor: this.state.emailStatus === 1 ? '#fff' : COLORS.lightGray }]}  />
                                         </Item>
 
                                         <Item style={[styles.loginItem]} bordered>
-                                            <Label style={[styles.label ]}>الرسالة</Label>
+                                            <Label style={[styles.label ]}>{ i18n.t('msg') }</Label>
                                             <Textarea onBlur={() => this.unActiveInput('msg')} onFocus={() => this.activeInput('msg')} placeholderTextColor={COLORS.placeholderColor}
                                                       onChangeText={(msg) => this.setState({msg})} autoCapitalize='none'
-                                                      style={[styles.input , {borderTopRightRadius:25 ,
+                                                      style={[styles.input , {borderTopRightRadius:25 ,borderTopLeftRadius:25  ,
                                                           borderColor: this.state.msgStatus === 1 ? COLORS.yellow : COLORS.lightGray ,
                                                           backgroundColor: this.state.msgStatus === 1 ? '#fff' : COLORS.lightGray ,
-                                                          height:120 , paddingVertical:10}]} placeholder="اكتب رسالتك" />
+                                                          height:120 , paddingVertical:10}]} placeholder={ i18n.t('typeMsg') } />
                                         </Item>
 
                                         <TouchableOpacity  style={[styles.yellowBtn , styles.mb10]}>
@@ -132,7 +134,7 @@ class ContactUa_client extends Component {
                                     </Form>
                                 </KeyboardAvoidingView>
 
-                                <Text style={[styles.yellowText , styles.mt25 , {fontSize:16} ]}>او عبر التواصل الاجتماعي</Text>
+                                <Text style={[styles.yellowText , styles.mt25 , {fontSize:16} ]}>{ i18n.t('throughSocial') }</Text>
                                 <Text style={[styles.grayText , styles.tAC , styles.mt15]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى</Text>
 
                                 <View style={[styles.directionRow , styles.mt25]}>
@@ -157,4 +159,4 @@ class ContactUa_client extends Component {
     }
 }
 
-export default ContactUa_client;
+export default ContactUs_client;

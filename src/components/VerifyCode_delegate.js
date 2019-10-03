@@ -8,7 +8,7 @@ import COLORS from '../../src/consts/colors'
 
 const height = Dimensions.get('window').height;
 
-class VerifyCode_client extends Component {
+class VerifyCode_delegate extends Component {
     constructor(props){
         super(props);
 
@@ -65,12 +65,12 @@ class VerifyCode_client extends Component {
                                     </Item>
 
 
+                                    <TouchableOpacity onPress={ () => this.props.navigation.navigate("login_delegate" )} style={[styles.yellowBtn , styles.mt15, styles.mb100]}>
+                                        <Text style={styles.whiteText}>{ i18n.t('sendButton') }</Text>
+                                    </TouchableOpacity>
+
+
                                 </Form>
-
-                                <TouchableOpacity onPress={ () => this.props.navigation.navigate("login_client" )} style={[styles.yellowBtn , styles.mt15, styles.mb100]}>
-                                    <Text style={styles.whiteText}>{ i18n.t('sendButton') }</Text>
-                                </TouchableOpacity>
-
                             </KeyboardAvoidingView>
                         </View>
                     </ImageBackground>
@@ -81,4 +81,4 @@ class VerifyCode_client extends Component {
     }
 }
 
-export default VerifyCode_client;
+export default VerifyCode_delegate;

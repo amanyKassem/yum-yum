@@ -7,7 +7,6 @@ import AppNavigator from './src/routes';
 import { Root } from "native-base";
 
 
-
 export default class App extends React.Component {
 
   constructor(props) {

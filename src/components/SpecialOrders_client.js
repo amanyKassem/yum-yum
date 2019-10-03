@@ -5,7 +5,7 @@ import {
     Image,
     Dimensions,
     TouchableOpacity,
-    ImageBackground, FlatList,
+    ImageBackground, FlatList,I18nManager
 } from "react-native";
 import {Container, Content, Header, Button , } from 'native-base'
 import styles from '../../assets/styles'
@@ -14,22 +14,22 @@ import COLORS from '../../src/consts/colors'
 
 
 const priceOrders=[
-    {id:1 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:2 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:1 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:2 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:3 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
 ]
 const orders=[
-    {id:1 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:2 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:4 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:1 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:2 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:3 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:4 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
 ]
 const finishedOrders=[
-    {id:1 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:2 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:4 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:1 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:2 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:3 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:3 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:4 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
 ]
 
 
@@ -68,7 +68,7 @@ class SpecialOrders_client extends Component {
                 </View>
                 <View style={[styles.directionColumnCenter , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                     <View style={[styles.directionRow ]}>
-                        <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>رقم الطلب</Text>
+                        <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>{i18n.t('orderNum')}</Text>
                     </View>
                     <View style={[styles.locationView]}>
                         <Text style={[styles.grayText, {fontSize:12} ]}>{item.orderNo}</Text>
@@ -80,7 +80,7 @@ class SpecialOrders_client extends Component {
 
     underOrders = (item) => {
         return(
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('orderDet_client')} style={[styles.notiBlock , {padding:7}]}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('followOrder_client')} style={[styles.notiBlock , {padding:7}]}>
                 <Image source={item.image} resizeMode={'cover'} style={styles.restImg}/>
                 <View style={[styles.directionColumn , {flex:1}]}>
                     <View style={[styles.directionRow ]}>
@@ -92,7 +92,7 @@ class SpecialOrders_client extends Component {
                 </View>
                 <View style={[styles.directionColumnCenter , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                     <View style={[styles.directionRow ]}>
-                        <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>رقم الطلب</Text>
+                        <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>{i18n.t('orderNum')}</Text>
                     </View>
                     <View style={[styles.locationView]}>
                         <Text style={[styles.grayText, {fontSize:12} ]}>{item.orderNo}</Text>
@@ -104,7 +104,7 @@ class SpecialOrders_client extends Component {
 
     finishedOrder = (item) => {
         return(
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('orderDet_client')} style={[styles.notiBlock , {padding:7}]}>
+            <View  style={[styles.notiBlock , {padding:7}]}>
                 <Image source={item.image} resizeMode={'cover'} style={styles.restImg}/>
                 <View style={[styles.directionColumn , {flex:1}]}>
                     <View style={[styles.directionRow ]}>
@@ -116,13 +116,13 @@ class SpecialOrders_client extends Component {
                 </View>
                 <View style={[styles.directionColumnCenter , { borderLeftWidth : 1 , borderLeftColor:'#f2f2f2' , paddingLeft:10}]}>
                     <View style={[styles.directionRow ]}>
-                        <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>رقم الطلب</Text>
+                        <Text style={[styles.boldGrayText , {color:COLORS.yellow} ]}>{i18n.t('orderNum')}</Text>
                     </View>
                     <View style={[styles.locationView]}>
                         <Text style={[styles.grayText, {fontSize:12} ]}>{item.orderNo}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </View>
         );
     }
 
@@ -182,7 +182,9 @@ class SpecialOrders_client extends Component {
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
 
@@ -190,15 +192,15 @@ class SpecialOrders_client extends Component {
                     <ImageBackground source={require('../../assets/images/bg.png')} resizeMode={'cover'} style={styles.imageBackground}>
 
 
-                        <View style={styles.orderTabs}>
+                        <View style={[styles.orderTabs]}>
                             <TouchableOpacity onPress={ () => this.setState({orderType:0})} style={[this.state.orderType === 0 ? styles.activeTab : styles.normalTab , {width:'auto'}]}>
-                                <Text style={this.state.orderType === 0 ? styles.activeTabText :styles.normalTabText} >طلبات تحتاج لسعر</Text>
+                                <Text style={this.state.orderType === 0 ? styles.activeTabText :styles.normalTabText} >{i18n.t('needPrice')}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={ () => this.setState({orderType:1})} style={[this.state.orderType === 1 ? styles.activeTab : styles.normalTab , {width:'auto'}]}>
-                                <Text style={this.state.orderType === 1 ? styles.activeTabText :styles.normalTabText} >طلبات قيد التنفيذ</Text>
+                                <Text style={this.state.orderType === 1 ? styles.activeTabText :styles.normalTabText} >{i18n.t('orderInProgress')}</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={ () => this.setState({orderType:2})} style={[this.state.orderType === 2 ? styles.activeTab : styles.normalTab , {width:'auto'}]}>
-                                <Text style={this.state.orderType === 2 ? styles.activeTabText :styles.normalTabText} >طلبات منتهية</Text>
+                            <TouchableOpacity onPress={ () => this.setState({orderType:2})} style={[this.state.orderType === 2 ? styles.activeTab : styles.normalTab , {width:I18nManager.isRTL ?'auto' :'100%'}]}>
+                                <Text style={this.state.orderType === 2 ? styles.activeTabText :styles.normalTabText} >{i18n.t('finishedOrders')}</Text>
                             </TouchableOpacity>
                         </View>
 

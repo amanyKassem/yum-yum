@@ -4,17 +4,19 @@ import {Container, Content,  Header, Button, Item, Input} from 'native-base'
 import styles from '../../assets/styles'
 import i18n from '../../locale/i18n'
 import COLORS from '../../src/consts/colors'
+import MapView from 'react-native-maps';
 
 
 const height = Dimensions.get('window').height;
 
 
-class OrderNow_client extends Component {
+class Location_client extends Component {
     constructor(props){
         super(props);
 
         this.state={
-            search:'',
+            latitude: 37.78825,
+            longitude: -122.4324,
         }
     }
 
@@ -40,7 +42,7 @@ class OrderNow_client extends Component {
                         </Button>
                     </View>
 
-                    <Text style={[styles.headerText , {right:0} ]}>{i18n.t('cart')}</Text>
+                    <Text style={[styles.headerText , {right:0} ]}>الموقع</Text>
 
                     <View style={styles.directionRow}>
                         <View>
@@ -58,23 +60,25 @@ class OrderNow_client extends Component {
                 </Header>
 
                 <Content contentContainerStyle={styles.flexGrow} style={{}} >
-                    <View style={[styles.w100 , styles.mt15]}>
-                        <View style={[styles.notiBlock , {padding:7}]}>
-                            <Image source={require('../../assets/images/blurred.png')} resizeMode={'cover'} style={styles.restImg}/>
-                            <View style={[styles.directionColumn , {flex:1}]}>
-                                <View style={[styles.directionRowSpace ]}>
-                                    <Text style={[styles.boldGrayText ]}>اسم المطعم</Text>
-                                </View>
-                                <View style={[styles.locationView]}>
-                                    <Image source={require('../../assets/images/maps.png')} style={[styles.locationImg]} resizeMode={'contain'} />
-                                    <Text style={[styles.grayText , {fontSize:12, writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr'} ]}>الرياض - المملكة العربية السعودية</Text>
-                                </View>
-                            </View>
-                        </View>
-
-                        <View style={styles.backTitle}>
-                            <Text style={[styles.yellowText , styles.asfs , {fontSize:15}]}>{i18n.t('products')}</Text>
-                        </View>
+                    <View style={[styles.w100 , {flex:1}]}>
+                        <MapView
+                            style={styles.mapView}
+                            initialRegion={{
+                                latitude: Number(this.state.latitude),
+                                longitude: Number(this.state.longitude),
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                            }}
+                        >
+                            <MapView.Marker
+                                coordinate={({
+                                    latitude: Number(this.state.latitude),
+                                    longitude: Number(this.state.longitude),
+                                })}
+                            >
+                                <Image source={require('../../assets/images/marker.png')} resizeMode={'contain'} style={styles.mapMarker}/>
+                            </MapView.Marker>
+                        </MapView>
 
                     </View>
                 </Content>
@@ -84,4 +88,4 @@ class OrderNow_client extends Component {
     }
 }
 
-export default OrderNow_client;
+export default Location_client;

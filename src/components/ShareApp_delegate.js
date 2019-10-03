@@ -18,7 +18,7 @@ import COLORS from '../../src/consts/colors'
 
 const height = Dimensions.get('window').height;
 
-class ShareApp_client extends Component {
+class ShareApp_delegate extends Component {
     constructor(props){
         super(props);
 
@@ -60,24 +60,19 @@ class ShareApp_client extends Component {
             <Container>
 
                 <Header style={[styles.header ]} noShadow>
+                    <Button onPress={() => this.props.navigation.openDrawer()} transparent style={styles.headerBtn}>
+                        <Image source={require('../../assets/images/noun_menu.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
+                    </Button>
+
+                    <Text style={[styles.headerText ,{right:-19}]}>{ i18n.t('shareApp') }</Text>
+
                     <View style={styles.directionRow}>
-                        <Button onPress={() => this.props.navigation.openDrawer()} transparent style={styles.headerBtn}>
-                            <Image source={require('../../assets/images/noun_menu.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
-                        </Button>
-                        <Button onPress={() => this.props.navigation.navigate('notification_client')} transparent style={styles.headerBtn}>
+                        <Button onPress={() => this.props.navigation.navigate('notification_delegate')} transparent style={styles.headerBtn}>
                             <Image source={require('../../assets/images/notification.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
                         </Button>
-                    </View>
-
-                    <Text style={[styles.headerText ]}>{i18n.t('shareApp')}</Text>
-
-                    <View style={styles.directionRow}>
-                        <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
-                            <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
+                        <Button onPress={() => this.props.navigation.goBack()} transparent  style={styles.headerBtn}>
+                            <Image source={require('../../assets/images/arrow_left.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
                         </Button>
-                        <View style={styles.cartNum}>
-                            <Text style={styles.cartNumText}>12</Text>
-                        </View>
                     </View>
                 </Header>
 
@@ -85,7 +80,7 @@ class ShareApp_client extends Component {
                     <ImageBackground source={require('../../assets/images/bg.png')} resizeMode={'cover'} style={styles.imageBackground}>
                         <View style={[styles.homeSection , {marginTop:20}]}>
                             <View style={styles.directionColumnCenter}>
-                                <Image source={require('../../assets/images/logo.png')} style={[styles.wallet]} resizeMode={'contain'} />
+                                <Image source={require('../../assets/images/logo.png')} style={[styles.wallet ]} resizeMode={'contain'} />
 
 
                                 <Text style={[styles.yellowText, styles.mt50]}>{i18n.t('shareApp')}</Text>
@@ -117,4 +112,4 @@ class ShareApp_client extends Component {
     }
 }
 
-export default ShareApp_client;
+export default ShareApp_delegate;

@@ -5,7 +5,7 @@ import {DrawerItems} from 'react-navigation';
 import styles from "../../assets/styles";
 
 
-class DrawerCustomization_client extends Component {
+class DrawerCustomization_delegate extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -14,7 +14,7 @@ class DrawerCustomization_client extends Component {
     }
 
     logout(){
-        this.props.navigation.navigate('login_client');
+        this.props.navigation.navigate('login_delegate');
     }
 
 
@@ -24,18 +24,18 @@ class DrawerCustomization_client extends Component {
             <Container>
                 <Content style={{backgroundColor:'#fff'}}>
                     <View style={styles.sideView}>
-                         <Image source={require('../../assets/images/bgsidemenu.png')} resizeMode={'cover'} style={styles.bgSideMenu}/>
-                         <View style={styles.sideImgView}>
-                             <View style={styles.sideProfileImg}>
-                                 <Image source={require('../../assets/images/profile_pic.png')} resizeMode={'cover'} style={styles.swiperimage}/>
-                             </View>
-                             <Text style={styles.sideName}>اماني قاسم</Text>
-                         </View>
+                        <Image source={require('../../assets/images/bgsidemenu.png')} resizeMode={'cover'} style={styles.bgSideMenu}/>
+                        <View style={styles.sideImgView}>
+                            <View style={styles.sideProfileImg}>
+                                <Image source={require('../../assets/images/profile_pic.png')} resizeMode={'cover'} style={styles.swiperimage}/>
+                            </View>
+                            <Text style={styles.sideName}>اماني قاسم</Text>
+                        </View>
                     </View>
                     <DrawerItems {...this.props}
                                  onItemPress={
                                      (route, focused) => {
-                                         if (route.route.key === 'logout_client') {
+                                         if (route.route.key === 'logout_delegate') {
                                              this.logout()
                                          }else {
                                              this.props.navigation.navigate(route.route.key)
@@ -47,7 +47,7 @@ class DrawerCustomization_client extends Component {
                                  itemStyle  = {styles.drawerItemStyle} itemsContainerStyle ={{}}
                     />
 
-                    </Content>
+                </Content>
 
             </Container>
         );
@@ -55,4 +55,4 @@ class DrawerCustomization_client extends Component {
 }
 
 
-export default DrawerCustomization_client;
+export default DrawerCustomization_delegate;

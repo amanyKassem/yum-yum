@@ -17,7 +17,7 @@ class Policy_client extends Component {
     }
 
     static navigationOptions = () => ({
-        drawerLabel:  'سياسة التطبيق'  ,
+        drawerLabel:  i18n.t('appPolicy'),
         drawerIcon: (<Image source={require('../../assets/images/noun_policy.png')} style={styles.drawerImg} resizeMode={'contain'} /> )
     })
 
@@ -37,13 +37,15 @@ class Policy_client extends Component {
                         </Button>
                     </View>
 
-                    <Text style={[styles.headerText ]}>سياسة التطبيق</Text>
+                    <Text style={[styles.headerText ]}>{i18n.t('appPolicy')}</Text>
 
                     <View style={styles.directionRow}>
                         <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
                             <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
                         </Button>
-                        <Text style={styles.cartNum}>1</Text>
+                        <View style={styles.cartNum}>
+                            <Text style={styles.cartNumText}>12</Text>
+                        </View>
                     </View>
                 </Header>
 
@@ -51,7 +53,7 @@ class Policy_client extends Component {
                     <ImageBackground source={require('../../assets/images/bg.png')} resizeMode={'cover'} style={styles.imageBackground}>
                         <View style={[styles.homeSection , {marginTop:20}]}>
                             <View style={styles.directionColumnCenter}>
-                                <Image source={require('../../assets/images/logo.png')} style={[styles.wallet , styles.transform]} resizeMode={'contain'} />
+                                <Image source={require('../../assets/images/logo.png')} style={[styles.wallet ]} resizeMode={'contain'} />
                                 <Text style={[styles.grayText , styles.tAC , styles.mt15]}>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى </Text>
                             </View>
                         </View>

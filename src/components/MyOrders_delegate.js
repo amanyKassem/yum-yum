@@ -15,22 +15,22 @@ import COLORS from '../../src/consts/colors'
 
 const orders=[
     {id:1 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:2 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:2 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
     {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:4 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:4 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
 ]
 const finishedOrders=[
     {id:1 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:2 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:2 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
     {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
-    {id:3 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
+    {id:3 , name:'اسم الاسرة', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
     {id:4 , name:'اسم المطعم', date:'9/7/2019', orderNo :'123456' ,  image:require('../../assets/images/blurred.png')},
 ]
 
 
 const height = Dimensions.get('window').height;
 
-class MyOrders_client extends Component {
+class MyOrders_delegate extends Component {
     constructor(props){
         super(props);
 
@@ -42,7 +42,7 @@ class MyOrders_client extends Component {
     }
 
     static navigationOptions = () => ({
-        drawerLabel:  i18n.t('myOrders')  ,
+        drawerLabel:  i18n.t('orders')  ,
         drawerIcon: (<Image source={require('../../assets/images/noun_order.png')} style={styles.drawerImg} resizeMode={'contain'} /> )
     })
 
@@ -50,7 +50,7 @@ class MyOrders_client extends Component {
 
     underOrders = (item) => {
         return(
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('followOrder_client')} style={[styles.notiBlock , {padding:7}]}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('followOrder_delegate')} style={[styles.notiBlock , {padding:7}]}>
                 <Image source={item.image} resizeMode={'cover'} style={styles.restImg}/>
                 <View style={[styles.directionColumn , {flex:1}]}>
                     <View style={[styles.directionRow ]}>
@@ -127,26 +127,17 @@ class MyOrders_client extends Component {
         return (
             <Container>
 
+
                 <Header style={[styles.header ]} noShadow>
-                    <View style={styles.directionRow}>
-                        <Button onPress={() => this.props.navigation.openDrawer()} transparent style={styles.headerBtn}>
-                            <Image source={require('../../assets/images/noun_menu.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
-                        </Button>
-                        <Button onPress={() => this.props.navigation.navigate('notification_client')} transparent style={styles.headerBtn}>
-                            <Image source={require('../../assets/images/notification.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
-                        </Button>
-                    </View>
+                    <Button onPress={() => this.props.navigation.openDrawer()} transparent style={styles.headerBtn}>
+                        <Image source={require('../../assets/images/noun_menu.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
+                    </Button>
 
-                    <Text style={[styles.headerText ]}>{i18n.t('myOrders')}</Text>
+                    <Text style={[styles.headerText , {right:0} ]}>{i18n.t('myOrders')}</Text>
 
-                    <View style={styles.directionRow}>
-                        <Button onPress={() => this.props.navigation.navigate('cart_client')} transparent  style={styles.headerBtn}>
-                            <Image source={require('../../assets/images/shopping_basket.png')} style={styles.headerMenu} resizeMode={'contain'} />
-                        </Button>
-                        <View style={styles.cartNum}>
-                            <Text style={styles.cartNumText}>12</Text>
-                        </View>
-                    </View>
+                    <Button onPress={() => this.props.navigation.navigate('notification_delegate')} transparent style={styles.headerBtn}>
+                        <Image source={require('../../assets/images/notification.png')} style={[styles.headerMenu , styles.transform]} resizeMode={'contain'} />
+                    </Button>
                 </Header>
 
                 <Content contentContainerStyle={styles.flexGrow} style={{}} >
@@ -173,4 +164,4 @@ class MyOrders_client extends Component {
     }
 }
 
-export default MyOrders_client;
+export default MyOrders_delegate;
